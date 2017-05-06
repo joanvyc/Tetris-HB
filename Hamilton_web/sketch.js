@@ -8,6 +8,8 @@ var SIZE = 30;
 var grid = Array(200);
 
 function setup() {
+    frameRate(60);
+
     var canvas;
     canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
     canvas.parent('container');
@@ -48,7 +50,7 @@ var checkLines = function(){
   var i = FILES-1;
   while(i >= 0 && !line_i_is_empty(i)){
     for (var j = FILES; j > 0; --j){
-      
+
     }
     --i;
   }

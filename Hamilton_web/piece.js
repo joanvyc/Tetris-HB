@@ -37,6 +37,7 @@ function piece(){
   //canviar el valor de this.orgin en x en funcio de les tecles , canviar la rotacio
   this.entrada = function(){
       // en funcio de input ++origen.x o --origen.x
+    
   }
 
   //mira si pot rotar osigui que la posicio seguent del rotate no toca amb statics
