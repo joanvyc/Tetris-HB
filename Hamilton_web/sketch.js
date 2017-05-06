@@ -3,11 +3,11 @@ var files = 20;
 var cols = 10;
 var size = 5;
 
-var pesa = new piece();
 
-var grid[];
+var grid[200];
 
 function setup() {
+    console.log("hola \n hola");
     var canvas;
 
     canvas = createCanvas(cols*size, files*size);
@@ -16,7 +16,7 @@ function setup() {
     for(var i = 0; i<files; ++i){
         for(var j = 0; j<cols; ++j){
             quadraditu quad(i*size, j*size);
-            grid.push(quad);
+            grid[pos(i, j)] = quad;
         }
 
     }
@@ -43,11 +43,12 @@ var update = function(){
 }
 
 var checkLines = function(){
-  var i = 0;
-  while(!line_i_is_empty()){
-    for (){
-      
+  var i = files-1;
+  while(i >= 0 && !line_i_is_empty(i)){
+    for (var j = files; j > 0; --j){
+
     }
+    --i;
   }
 
 }
