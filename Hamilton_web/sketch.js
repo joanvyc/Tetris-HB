@@ -1,3 +1,4 @@
+var frameCounter = 0;
 var files = 20;
 var cols = 10;
 var size = 10;
@@ -24,4 +25,5 @@ function draw() {
         grid[i].show();
     }
 
+  frameCounter++;
 }
