@@ -1,30 +1,32 @@
 var frameCounter = 0;
 var FILES = 20;
 var COLS = 10;
-var SIZE = 5;
+var SIZE = 30;
 
+//var pesa;
 
 var grid = Array(200);
 
 function setup() {
-    console.log("hola\nhola");
     var canvas;
-
     canvas = createCanvas(COLS*SIZE, FILES*SIZE);
     canvas.parent('container');
     background(255, 255, 255);
+
+    //pesa = new piece();
+
     for(var i = 0; i<FILES; ++i){
         for(var j = 0; j<COLS; ++j){
-            var quad = quadraditu(i*SIZE, j*SIZE);
+            var quad = new quadraditu(j*SIZE, i*SIZE);
             grid[pos(i, j)] = quad;
+            quad.show();
         }
-
     }
 
 }
 
 function draw() {
-    background(255);
+    //background(0);
     /**
     for(var i = 0; i<200; ++i){
         grid[i].show();
@@ -36,7 +38,7 @@ function draw() {
 
 var update = function(){
     if (frameCounter % 90 == 0) {
-      pesa.update();
+      //pesa.update();
       checkLines();
     }
 
@@ -52,6 +54,8 @@ var checkLines = function(){
   }
 
 }
+
+var line_i_is_empty = function(i){return true;}
 
 var pos = function(x, y){
     return x + y * FILES;

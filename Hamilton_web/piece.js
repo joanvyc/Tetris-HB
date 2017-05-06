@@ -34,8 +34,8 @@ function piece(){
     break;
   }
 }
-var entrada = function(){}//canviar el valor de this.orgin en x en funcio de les tecles , tambe el rotar
-var can_rotate = function(){} //mira si pot rotar osigui que la pos seguent no entra en contacte amb estatics
+var entrada = function(){}//canviar el valor de this.orgin en x en funcio de les tecles , canviar la rotacio
+var can_rotate = function(){} //mira si pot rotar osigui que la posicio seguent del rotate no toca amb statics
 var update = function(){
   // ha de detectar si esta en contacte amb un cub estatic si ho està cridar a reiniciar
   //si no està en contacte amb un cub estatic eliminar aquests cubs ja escrits i escriure en ++origen.y
