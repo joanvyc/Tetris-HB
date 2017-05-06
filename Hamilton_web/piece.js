@@ -90,13 +90,13 @@ function piece(){
         if(grid[pos(sup_pos.x,sup_pos.y)].is_static()) cond = false;
     }
     if(cond){
-      for(int i = 0; i<4; ++i){
+      for(var i = 0; i<4; ++i){
         var sup_pos = this.r_places[this.r_state % this.r_places.length][i] + this.origin;
         grid[pos(sup_pos.x,sup_pos.y)].state = "default";
         grid[pos(sup_pos.x,sup_pos.y)].color = -1;
       }
       ++origin.y;
-      for(int i = 0; i<4; ++i){
+      for(var i = 0; i<4; ++i){
         var sup_pos = this.r_places[this.r_state % this.r_places.length][i] + this.origin;
         grid[pos(sup_pos.x,sup_pos.y)].state = "dynamic";
         grid[pos(sup_pos.x,sup_pos.y)].color = name;
