@@ -41,7 +41,7 @@ function piece(){
     case 5:
       this.r_places = new Array(2);
       this.r_places[0] = [createVector(3,2),createVector(4,2),createVector(5,2),createVector(6,2)];
-      this.r_places[0] = [createVector(5,0),createVector(5,1),createVector(5,2),createVector(5,3)];
+      this.r_places[1] = [createVector(5,0),createVector(5,1),createVector(5,2),createVector(5,3)];
       break;
 
   }
