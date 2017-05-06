@@ -47,7 +47,7 @@ function piece(){
   }
 
   //canviar el valor de this.orgin en x en funcio de les tecles , canviar la rotacio
-  this.moure = function(var desp){
+  this.moure = function(desp){
       // en funcio de input ++origen.x o --origen.x
       var found = false;
       for(var i = 0; i<4 && !false; ++i){
@@ -79,7 +79,7 @@ function piece(){
     return true;
 }
 
-  this.update = function(var baixar){
+  this.update = function(baixar){
     // ha de detectar si esta en contacte amb un cub estatic si ho està cridar a reiniciar
     // si no està en contacte amb un cub estatic eliminar aquests cubs ja escrits i escriure en ++origen.y
 
