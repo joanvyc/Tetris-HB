@@ -1,5 +1,5 @@
 function piece(){
-  var name = floor(random(0,6));
+  var name = floor(random(0,7));
   this.r_places;
   this.place = new Array(4);
   this.origin = createVector(0,0);
