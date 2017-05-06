@@ -93,7 +93,7 @@ function piece(){
       for(var i = 0; i<4; ++i){
         var sup_pos = this.r_places[this.r_state % this.r_places.length][i] + this.origin;
         grid[pos(sup_pos.x,sup_pos.y)].state = "default";
-        grid[pos(sup_pos.x,sup_pos.y)].color = -1;
+        grid[pos(sup_pos.x,sup_pos.y)].color = 0;
       }
       ++origin.y;
       for(var i = 0; i<4; ++i){
