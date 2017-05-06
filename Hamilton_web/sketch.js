@@ -3,15 +3,18 @@ var FILES = 20;
 var COLS = 10;
 var SIZE = 30;
 
+var pesa;
 
 var grid = Array(200);
 
 function setup() {
     var canvas;
-
     canvas = createCanvas(COLS*SIZE, FILES*SIZE);
     canvas.parent('container');
     background(255, 255, 255);
+
+    pesa = new piece();
+
     for(var i = 0; i<FILES; ++i){
         for(var j = 0; j<COLS; ++j){
             var quad = new quadraditu(i*SIZE, j*SIZE);
