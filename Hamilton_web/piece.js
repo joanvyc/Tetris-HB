@@ -56,7 +56,10 @@ function piece(){
   this.can_rotate = function(){
 
     for(var i = 0; i<4; ++i){
-        if(grid[pos((this.r_places[(this.r_state+1)%this.r_places.size()][i] + this.origin).x,(this.r_places[(this.r_state+1)%this.r_places.size()][i] + this.origin).y)].is_static()) return false;
+      var pos_consultar = createVector(0,0);
+      pos_consultar.x = (this.r_places[(this.r_state+1)%this.r_places.size()][i] + this.origin).x;
+      pos_consultar.y = (this.r_places[(this.r_state+1)%this.r_places.size()][i] + this.origin).y;
+      if(grid[pos(,)].is_static()) return false;
     }
     return true;
 }
