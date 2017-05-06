@@ -3,6 +3,8 @@ var files = 20;
 var cols = 10;
 var size = 5;
 
+var pesa = new piece();
+
 var grid[];
 
 function setup() {
@@ -23,11 +25,31 @@ function setup() {
 
 function draw() {
     background(255);
+    /**
     for(var i = 0; i<200; ++i){
         grid[i].show();
     }
-
+    */
+    update();
     frameCounter++;
+}
+
+var update = function(){
+    if (frameCounter % 90 == 0) {
+      pesa.update();
+      checkLines();
+    }
+
+}
+
+var checkLines = function(){
+  var i = 0;
+  while(!line_i_is_empty()){
+    for (){
+      
+    }
+  }
+
 }
 
 var pos = function(x, y){
