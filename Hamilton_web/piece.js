@@ -51,6 +51,7 @@ function piece(){
      this.r_places[1] = [createVector(4,2),createVector(4,0),createVector(4,1),createVector(5,1)];
      this.r_places[2] = [createVector(3,1),createVector(4,2),createVector(4,1),createVector(5,1)];
      this.r_places[3] = [createVector(3,1),createVector(4,0),createVector(4,1),createVector(4,2)];
+     break;
   }
 
   //canviar el valor de this.orgin en x en funcio de les tecles , canviar la rotacio
