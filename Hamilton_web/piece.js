@@ -43,7 +43,6 @@ function piece(){
       this.r_places[0] = [createVector(3,2),createVector(4,2),createVector(5,2),createVector(6,2)];
       this.r_places[1] = [createVector(5,0),createVector(5,1),createVector(5,2),createVector(5,3)];
       break;
-<<<<<<< HEAD
     case 6:
      // cross
      this.r_places = new Array(4);
@@ -52,9 +51,6 @@ function piece(){
      this.r_places[2] = [createVector(3,1),createVector(4,2),createVector(4,1),createVector(5,1)];
      this.r_places[3] = [createVector(3,1),createVector(4,0),createVector(4,1),createVector(4,2)];
      break;
-=======
-
->>>>>>> 4ef43b624c3b36d26b92b269740bdf0ad47dc02f
   }
 
   //canviar el valor de this.orgin en x en funcio de les tecles , canviar la rotacio
