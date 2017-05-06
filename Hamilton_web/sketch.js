@@ -38,8 +38,14 @@ var update = function(){
     if (frameCounter < frameCount) {
         frameCounter = frameCount + delay;
       pesa.update();
+
     }
-    pesa.entrada();
+}
+
+var addFrame = function() {
+  for(var i = 0; i < 200; ++i){
+    grid[i].show();
+  }
 }
 
 var checkLines = function(){
