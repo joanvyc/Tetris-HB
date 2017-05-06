@@ -39,18 +39,11 @@ function piece(){
       this.r_places[3] = [createVector(3,2),createVector(4,2),createVector(4,1),createVector(4,0)];
       break;
     case 5:
-    // --
       this.r_places = new Array(2);
       this.r_places[0] = [createVector(3,2),createVector(4,2),createVector(5,2),createVector(6,2)];
       this.r_places[1] = [createVector(5,0),createVector(5,1),createVector(5,2),createVector(5,3)];
       break;
-    case 6:
-     // cross
-     this.r_places = new Array(4);
-     this.r_places[0] = [createVector(3,1),createVector(4,0),createVector(4,1),createVector(5,1)];
-     this.r_places[1] = [createVector(4,2),createVector(4,0),createVector(4,1),createVector(5,1)];
-     this.r_places[2] = [createVector(3,1),createVector(4,2),createVector(4,1),createVector(5,1)];
-     this.r_places[3] = [createVector(3,1),createVector(4,0),createVector(4,1),createVector(4,2)];
+
   }
 
   //canviar el valor de this.orgin en x en funcio de les tecles , canviar la rotacio
@@ -100,13 +93,13 @@ function piece(){
       for(var i = 0; i<4; ++i){
         var sup_pos = this.r_places[this.r_state % this.r_places.length][i] + this.origin;
         grid[pos(sup_pos.x,sup_pos.y)].state = "default";
-        grid[pos(sup_pos.x,sup_pos.y)].color = 0;
+        grid[pos(sup_pos.x,sup_pos.y)].COLOR = 0;
       }
       ++origin.y;
       for(var i = 0; i<4; ++i){
         var sup_pos = this.r_places[this.r_state % this.r_places.length][i] + this.origin;
         grid[pos(sup_pos.x,sup_pos.y)].state = "dynamic";
-        grid[pos(sup_pos.x,sup_pos.y)].color = name;
+        grid[pos(sup_pos.x,sup_pos.y)].COLOR = name;
       }
     }
     else origin = createVector(0,0);
