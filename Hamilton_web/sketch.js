@@ -6,6 +6,7 @@ var SIZE = 30;
 //var pesa;
 
 var grid = Array(200);
+var pesa = new piece();
 
 function setup() {
     frameRate(60);
@@ -28,40 +29,38 @@ function setup() {
 }
 
 function draw() {
-    //background(0);
-    /**
-    for(var i = 0; i<200; ++i){
-        grid[i].show();
-    }
-    */
     update();
     frameCounter++;
 }
 
 var update = function(){
     if (frameCounter % 90 == 0) {
-      //pesa.update();
-      checkLines();
+      pesa.update();
     }
-
+    pesa.entrada();
 }
 
 var checkLines = function(){
-  var i = FILES-1;
-  while(i >= 0 && !line_i_is_empty(i)){
-    for (var j = FILES; j > 0; --j){
-
-    }
-    --i;
+  var i = FILES-2;
+  var checked = line_state(FILES-1);
+  while(i >= 0 && !checked.x){
+    if (checked.y) delete_line(i);
   }
-
 }
 
-var line_i_is_empty = function(x){
-  var empty = true;
+var line_state = function(x){
+  var empty = createVector(true, true);
   var limit = COLS*(i+1);
-  for (var i = COLS*x; empty && i < limit; ++i){
-    if (!grid[i].is_default()) empty = false;
+  for (var i = COLS*x;i < limit; ++i){
+    if (!grid[i].is_default()) empty.x = false;
+    if (grid[i].is_default())  empty.y = false;
+  }
+}
+
+var delete_line = function(line){
+  for (var i = line*FILES -1; i >= 0; --i) {
+    grid[i+FILES].setcolor(grid[i].color);
+    grid[i].setcolor("default");
   }
 }
 
