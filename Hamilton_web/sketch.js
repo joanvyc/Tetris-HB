@@ -6,7 +6,7 @@ var SIZE = 30;
 //var pesa;
 
 var grid = Array(200);
-var pesa = new piece();
+var pesa;
 
 function setup() {
     frameRate(60);
@@ -16,7 +16,7 @@ function setup() {
     canvas.parent('container');
     background(255, 255, 255);
 
-    //pesa = new piece();
+    pesa = new piece();
 
     for(var i = 0; i<FILES; ++i){
         for(var j = 0; j<COLS; ++j){
