@@ -4,8 +4,8 @@ function quadraditu(x, y) {
   this.y = y;
 
   // default  (empty)
-  // <color>  (fill with this color)
-  this.color = -1;
+  // <COLOR>  (fill with this COLOR)
+  this.COLOR = -1;
 
   // default  (empty)
   // dynamics (falls when update)
@@ -16,7 +16,7 @@ function quadraditu(x, y) {
   // Pre: true.
   // Post:draws the squeare.
   this.show = function(){
-    switch(this.color){
+    switch(this.COLOR){
       case -1: fill(55, 55, 55);break;
       case 0:  fill(109, 249, 244);break;
       case 1:  fill(242, 255, 0);  break;

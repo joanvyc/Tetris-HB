@@ -21,9 +21,8 @@ function setup() {
 
     for(var i = 0; i<FILES; ++i){
         for(var j = 0; j<COLS; ++j){
-            var quad = new quadraditu(j*SIZE, i*SIZE);
             var position = pos(j, i);
-            grid[position] = quad;
+            grid[position] = quadraditu(j*SIZE, i*SIZE);
             grid[position].show();
         }
     }
@@ -31,8 +30,9 @@ function setup() {
 }
 
 function draw() {
-    update();
     addFrame();
+    console.log(frameCount);
+    update();
     frameCounter++;
 }
 
@@ -45,8 +45,10 @@ var update = function(){
 }
 
 var addFrame = function() {
-  for(var i = 0; i < 200; ++i){
-    grid[i].show();
+  for(var x = 0; x < FILES; ++x){
+    for (var y = 0; y < COLS; ++y){
+      grid[pos(x,y)].show();
+    }
   }
 }
 
