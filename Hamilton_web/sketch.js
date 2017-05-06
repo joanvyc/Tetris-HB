@@ -22,8 +22,9 @@ function setup() {
     for(var i = 0; i<FILES; ++i){
         for(var j = 0; j<COLS; ++j){
             var quad = new quadraditu(j*SIZE, i*SIZE);
-            grid[pos(i, j)] = quad;
-            quad.show();
+            var position = pos(j, i);
+            grid[position] = quad;
+            grid[position].show();
         }
     }
 
@@ -31,6 +32,7 @@ function setup() {
 
 function draw() {
     update();
+    addFrame();
     frameCounter++;
 }
 
