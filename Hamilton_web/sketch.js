@@ -9,7 +9,7 @@ var grid = Array(200);
 
 function setup() {
     var canvas;
-    canvas = createCanvas(COLS*SIZE, FILES*SIZE);
+    canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
     canvas.parent('container');
     background(255, 255, 255);
 
@@ -48,14 +48,20 @@ var checkLines = function(){
   var i = FILES-1;
   while(i >= 0 && !line_i_is_empty(i)){
     for (var j = FILES; j > 0; --j){
-
+      
     }
     --i;
   }
 
 }
 
-var line_i_is_empty = function(i){return true;}
+var line_i_is_empty = function(x){
+  var empty = true;
+  var limit = COLS*(i+1);
+  for (var i = COLS*x; empty && i < limit; ++i){
+    if (!grid[i].is_default()) empty = false;
+  }
+}
 
 var pos = function(x, y){
     return x + y * FILES;

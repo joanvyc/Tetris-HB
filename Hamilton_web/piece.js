@@ -20,7 +20,7 @@ function piece(name){
   this.rotate = function(){
 
   }
-  
+
   this.update = function(){
     for(var i = 0;i< 4;++i){
       grid[grid.pos(this.pos[i].x,this.pos[i].y)].state = "default";
