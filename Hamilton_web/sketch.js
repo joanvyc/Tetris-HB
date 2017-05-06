@@ -1,21 +1,21 @@
 var frameCounter = 0;
-var files = 20;
-var cols = 10;
-var size = 5;
+var FILES = 20;
+var COLS = 10;
+var SIZE = 5;
 
 
-var grid[200];
+var grid = Array(200);
 
 function setup() {
-    console.log("hola \n hola");
+    console.log("hola\nhola");
     var canvas;
 
-    canvas = createCanvas(cols*size, files*size);
+    canvas = createCanvas(COLS*SIZE, FILES*SIZE);
     canvas.parent('container');
     background(255, 255, 255);
-    for(var i = 0; i<files; ++i){
-        for(var j = 0; j<cols; ++j){
-            quadraditu quad(i*size, j*size);
+    for(var i = 0; i<FILES; ++i){
+        for(var j = 0; j<COLS; ++j){
+            var quad = quadraditu(i*SIZE, j*SIZE);
             grid[pos(i, j)] = quad;
         }
 
@@ -43,9 +43,9 @@ var update = function(){
 }
 
 var checkLines = function(){
-  var i = files-1;
+  var i = FILES-1;
   while(i >= 0 && !line_i_is_empty(i)){
-    for (var j = files; j > 0; --j){
+    for (var j = FILES; j > 0; --j){
 
     }
     --i;
@@ -54,5 +54,5 @@ var checkLines = function(){
 }
 
 var pos = function(x, y){
-    return x + y * files;
+    return x + y * FILES;
 }

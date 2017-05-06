@@ -28,7 +28,7 @@ function show(){
     default: break;
   }
   stroke(0,0,0);
-  rectangle(this.x, this.y, size, size);
+  rectangle(this.x, this.y, SIZE, SIZE);
 }
 
 // Pre: COLOR = color is cyan, yellow, purple, green, red, blue or orange.
