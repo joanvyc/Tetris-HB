@@ -17,15 +17,16 @@ function setup() {
 
     for(var i = 0; i<FILES; ++i){
         for(var j = 0; j<COLS; ++j){
-            var quad = new quadraditu(i*SIZE, j*SIZE);
+            var quad = new quadraditu(j*SIZE, i*SIZE);
             grid[pos(i, j)] = quad;
+            quad.show();
         }
     }
 
 }
 
 function draw() {
-    background(0);
+    //background(0);
     /**
     for(var i = 0; i<200; ++i){
         grid[i].show();

@@ -16,8 +16,8 @@ function quadraditu(x, y) {
   // Pre: true.
   // Post:draws the squeare.
   this.show = function(){
-    switch(color){
-      case "default":fill(30, 30, 30);   break;
+    switch(this.color){
+      case "default":fill(55, 55, 55);break;
       case "cyan":   fill(109, 249, 244);break;
       case "yellow": fill(242, 255, 0);  break;
       case "purple": fill(166, 0, 255);  break;
@@ -27,13 +27,13 @@ function quadraditu(x, y) {
       case "orange": fill(255, 153, 0);  break;
       default: break;
     }
-    stroke(0,0,0);
-    rectangle(this.x, this.y, SIZE, SIZE);
+    stroke(30,30,30);
+    rect(this.x, this.y, SIZE, SIZE);
   }
 
   // Pre: COLOR = color is cyan, yellow, purple, green, red, blue or orange.
   // Post: color is set to COLOR.
-  this.color = function(color) {
+  this.setcolor = function(color) {
     this.color = color;
   }
 
