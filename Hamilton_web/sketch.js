@@ -1,3 +1,5 @@
+var frameCounter = 0;
+
 function setup() {
     var canvas;
     canvas = createCanvas(500, 750);
@@ -7,4 +9,5 @@ function setup() {
 
 function draw() {
 
+  frameCounter++;
 }
