@@ -24,23 +24,31 @@ function piece(){
       this.r_places[1] = [createVector(4,0),createVector(4,1),createVector(5,1),createVector(5,2)];
       break;
     case 3:
-    // L
-    this.r_places = new Array(4);
-    this.r_places[0] = [createVector(3,1),createVector(4,1),createVector(5,1),createVector(5,0)];
-    this.r_places[1] = [createVector(4,0),createVector(4,1),createVector(4,2),createVector(5,2)];
-    this.r_places[2] = [createVector(3,1),createVector(4,1),createVector(5,1),createVector(3,2)];
-    this.r_places[3] = [createVector(3,0),createVector(4,0),createVector(4,1),createVector(4,2)];
+      // L
+      this.r_places = new Array(4);
+      this.r_places[0] = [createVector(3,1),createVector(4,1),createVector(5,1),createVector(5,0)];
+      this.r_places[1] = [createVector(4,0),createVector(4,1),createVector(4,2),createVector(5,2)];
+      this.r_places[2] = [createVector(3,1),createVector(4,1),createVector(5,1),createVector(3,2)];
+      this.r_places[3] = [createVector(3,0),createVector(4,0),createVector(4,1),createVector(4,2)];
 
     break;
   }
 
-  this.entrada = function(){}//canviar el valor de this.orgin en x en funcio de les tecles , canviar la rotacio
-  this.can_rotate = function(){} //mira si pot rotar osigui que la posicio seguent del rotate no toca amb statics
+  //canviar el valor de this.orgin en x en funcio de les tecles , canviar la rotacio
+  this.entrada = function(){
+      // en funcio de input ++origen.x o --origen.x
+  }
+
+  //mira si pot rotar osigui que la posicio seguent del rotate no toca amb statics
+  this.can_rotate = function(){
+
+  }
+
   this.update = function(){
     // ha de detectar si esta en contacte amb un cub estatic si ho està cridar a reiniciar
-    //si no està en contacte amb un cub estatic eliminar aquests cubs ja escrits i escriure en ++origen.y
-    for(var i = 0;i< 4;++i){
-      grid[pos(this.pos[i].x,this.pos[i].y)].state = "default";
-    }
+    // si no està en contacte amb un cub estatic eliminar aquests cubs ja escrits i escriure en ++origen.y
+
+    // Amb condicions.
+    origen.y++;
   }
 }
