@@ -1,4 +1,5 @@
 var frameCounter = 0;
+var delay = 90;
 var FILES = 20;
 var COLS = 10;
 var SIZE = 30;
@@ -34,7 +35,8 @@ function draw() {
 }
 
 var update = function(){
-    if (frameCounter % 90 == 0) {
+    if (frameCounter < frameCount) {
+        frameCounter = frameCount + delay;
       pesa.update();
     }
     pesa.entrada();
@@ -66,4 +68,12 @@ var delete_line = function(line){
 
 var pos = function(x, y){
     return x + y * FILES;
+}
+
+function keyPressed(){
+    if(keyCode == LEFT_ARROW)  pesa.moure(-1);
+    if(keyCode == RIGHT_ARROW) pesa.moure(1)
+    if(keyCode == UP_ARROW) pesa.rotar();
+    if(keyCode == DOWN_ARROW) delay = 30;
+    else delay = 90;
 }
