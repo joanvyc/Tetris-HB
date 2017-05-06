@@ -52,7 +52,7 @@ function piece(){
       var found = false;
       for(var i = 0; i<4 && !false; ++i){
         var sup_pos = this.r_places[(this.r_state)%this.r_places.length][i] + this.origin + createVector(desp,0);
-        if(sup_pos.x>9 or sup_pos.x<0)found = true;
+        if(sup_pos.x>9 || sup_pos.x<0)found = true;
         if(grid[pos(sup_pos.x,sup_pos.y)].is_static) found = true;
       }
       if(!found){
