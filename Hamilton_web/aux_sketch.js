@@ -1,5 +1,4 @@
-var frameCounter = 0;
-var delay = 90;
+var frames_to_update = 0;
 var FILES = 20;
 var COLS = 10;
 var SIZE = 30;
@@ -12,8 +11,7 @@ var pesa;
 function setup() {
     frameRate(60);
 
-    var canvas;
-    canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
+    var canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
     canvas.parent('container');
     background(255, 255, 255);
 
@@ -31,13 +29,13 @@ function setup() {
 
 function draw() {
     update();
-    frameCounter++;
+    frames_to_update--;
 }
 
 var update = function(){
-    if (frameCounter < frameCount) {
-        frameCounter = frameCount + delay;
+    if (frames_to_update <= 0) {
       pesa.update();
+      frames_to_update = 90;
     }
     pesa.entrada();
 }
@@ -75,5 +73,5 @@ function keyPressed(){
     if(keyCode == RIGHT_ARROW) pesa.moure(1)
     if(keyCode == UP_ARROW) pesa.rotar();
     if(keyCode == DOWN_ARROW) delay = 30;
-    else delay = 90;
+    else frames_to_update = 20;
 }

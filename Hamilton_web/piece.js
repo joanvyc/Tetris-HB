@@ -51,16 +51,21 @@ function piece(){
       // en funcio de input ++origen.x o --origen.x
       var found = false;
       for(var i = 0; i<4 && !false; ++i){
-        var sup_pos = this.r_places[(this.r_state)%this.r_places.length][i] + this.origin + createVector(-desp,0);
+        var sup_pos = this.r_places[(this.r_state)%this.r_places.length][i] + this.origin + createVector(desp,0);
         if(sup_pos.x>9 or sup_pos.x<0)found = true;
         if(grid[pos(sup_pos.x,sup_pos.y)].is_static) found = true;
       }
-      if(!found)--origin.y;
+      if(!found){
+        this.origin = this.origin + createVector(desp,0);
+        this.update(false);
+        for(var i = 0; i<200;++i)grid[i].show();
+      }
   }
   this.rotar = function(){
     if(can_rotate){
         ++this.r_state;
         this.update(false);
+        for(var i = 0; i<200;++i)grid[i].show();
 
     }
   }
@@ -69,7 +74,7 @@ function piece(){
   this.can_rotate = function(){
 
     for(var i = 0; i<4; ++i){
-        if(grid[pos((this.r_places[(this.r_state+1)%this.r_places.length][i] + this.origin).x,(this.r_places[(this.r_state+1)%this.r_places.length][i] + this.origin).y)].is_static()) return false;
+      if(grid[pos((this.r_places[(this.r_state+1)%this.r_places.length][i] + this.origin).x,(this.r_places[(this.r_state+1)%this.r_places.length][i] + this.origin).y)].is_static()) return false;
     }
     return true;
 }
@@ -88,11 +93,13 @@ function piece(){
       for(int i = 0; i<4; ++i){
         var sup_pos = this.r_places[this.r_state % this.r_places.length][i] + this.origin;
         grid[pos(sup_pos.x,sup_pos.y)].state = "default";
+        grid[pos(sup_pos.x,sup_pos.y)].color = -1;
       }
       ++origin.y;
       for(int i = 0; i<4; ++i){
         var sup_pos = this.r_places[this.r_state % this.r_places.length][i] + this.origin;
         grid[pos(sup_pos.x,sup_pos.y)].state = "dynamic";
+        grid[pos(sup_pos.x,sup_pos.y)].color = name;
       }
     }
     else origin = createVector(0,0);

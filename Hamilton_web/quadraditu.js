@@ -31,12 +31,6 @@ function quadraditu(x, y) {
     rect(this.x, this.y, SIZE, SIZE);
   }
 
-  // Pre: COLOR = color is cyan, yellow, purple, green, red, blue or orange.
-  // Post: color is set to COLOR.
-  this.setcolor = function(color) {
-    this.color = color;
-  }
-
   // Pre: true.
   // Post:return whether is default or not.
   this.is_default = function(){
