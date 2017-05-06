@@ -3,7 +3,7 @@ var FILES = 20;
 var COLS = 10;
 var SIZE = 30;
 
-var pesa;
+//var pesa;
 
 var grid = Array(200);
 
@@ -13,7 +13,7 @@ function setup() {
     canvas.parent('container');
     background(255, 255, 255);
 
-    pesa = new piece();
+    //pesa = new piece();
 
     for(var i = 0; i<FILES; ++i){
         for(var j = 0; j<COLS; ++j){
@@ -37,7 +37,7 @@ function draw() {
 
 var update = function(){
     if (frameCounter % 90 == 0) {
-      pesa.update();
+      //pesa.update();
       checkLines();
     }
 
@@ -53,6 +53,8 @@ var checkLines = function(){
   }
 
 }
+
+var line_i_is_empty = function(i){return true;}
 
 var pos = function(x, y){
     return x + y * FILES;
