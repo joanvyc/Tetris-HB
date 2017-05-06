@@ -60,7 +60,7 @@ var line_state = function(x){
 var delete_line = function(line){
   for (var i = line*FILES -1; i >= 0; --i) {
     grid[i+FILES].setcolor(grid[i].color);
-    grid[i].setcolor("default");
+    grid[i].color = "default";
   }
 }
 
