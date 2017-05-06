@@ -19,20 +19,27 @@ function setup() {
 
     pesa = new piece();
 
+    for (var j = 0; j < FILES; ++j){
+      for (var i = 0; i < COLS; ++i){
+        var position = pos(i, j);
+        grid[position] = new quadraditu(i*SIZE, j*SIZE);
+        grid[position].show();
+      }
+    }
+/**
     for(var i = 0; i<FILES; ++i){
         for(var j = 0; j<COLS; ++j){
-            var position = pos(j, i);
-            grid[position] = quadraditu(j*SIZE, i*SIZE);
+            var position = pos(i, j);
+            grid[position] = new quadraditu(j*SIZE, i*SIZE);
             grid[position].show();
         }
     }
-
+*/
 }
 
 function draw() {
-    addFrame();
-    console.log(frameCount);
     update();
+    addFrame();
     frameCounter++;
 }
 
@@ -45,10 +52,8 @@ var update = function(){
 }
 
 var addFrame = function() {
-  for(var x = 0; x < FILES; ++x){
-    for (var y = 0; y < COLS; ++y){
-      grid[pos(x,y)].show();
-    }
+  for(var x = 0; x < 200; ++x){
+    grid[x].show();
   }
 }
 
@@ -71,13 +76,13 @@ var line_state = function(x){
 
 var delete_line = function(line){
   for (var i = line*FILES -1; i >= 0; --i) {
-    grid[i+FILES].setcolor(grid[i].color);
-    grid[i].color = "default";
+    grid[i+FILES].COLOR = grid[i].COLOR;
+    grid[i].COLOR = "default";
   }
 }
 
 var pos = function(x, y){
-    return x + y * FILES;
+    return x + y * COLS;
 }
 
 function keyPressed(){
