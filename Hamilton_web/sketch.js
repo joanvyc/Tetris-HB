@@ -1,10 +1,9 @@
-
-var canvas;
-
 function setup() {
-    canvas = createCanvas(100, 100);
-    background(255, 0, 200);
+    var canvas;
+    canvas = createCanvas(1000, 1000);
     canvas.parent('container');
+    background(0, 255, 0);
+
 }
 
 function draw() {
