@@ -1,5 +1,5 @@
 var frameCounter = 0;
-var delay = 90;
+var delay = 30;
 var FILES = 20;
 var COLS = 10;
 var SIZE = 30;
@@ -16,9 +16,6 @@ function setup() {
     canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
     canvas.parent('container');
     background(255, 255, 255);
-
-    pesa = new piece();
-
     for (var j = 0; j < FILES; ++j){
       for (var i = 0; i < COLS; ++i){
         var position = pos(i, j);
@@ -26,6 +23,9 @@ function setup() {
         grid[position].show();
       }
     }
+
+    pesa = new piece();
+
 /**
     for(var i = 0; i<FILES; ++i){
         for(var j = 0; j<COLS; ++j){
@@ -40,14 +40,12 @@ function setup() {
 function draw() {
     update();
     addFrame();
-    frameCounter++;
 }
 
 var update = function(){
     if (frameCounter < frameCount) {
-        frameCounter = frameCount + delay;
-      pesa.update();
-
+      pesa.update(true);
+      frameCounter = frameCount + delay;
     }
 }
 
@@ -58,26 +56,35 @@ var addFrame = function() {
 }
 
 var checkLines = function(){
+  console.log("Checking lines");
   var i = FILES-2;
   var checked = line_state(FILES-1);
   while(i >= 0 && !checked.x){
+    console.log(checked.x + " " + checked.y);
     if (checked.y) delete_line(i);
+    checked = line_state(i);
+    i--;
   }
 }
 
 var line_state = function(x){
   var empty = createVector(true, true);
-  var limit = COLS*(i+1);
+  var limit = COLS*(x+1);
   for (var i = COLS*x;i < limit; ++i){
-    if (!grid[i].is_default()) empty.x = false;
-    if (grid[i].is_default())  empty.y = false;
+    if (grid[i].is_default()) empty.y = false;
+    else  empty.x = false;
   }
+  return empty;
 }
 
 var delete_line = function(line){
-  for (var i = line*FILES -1; i >= 0; --i) {
-    grid[i+FILES].COLOR = grid[i].COLOR;
-    grid[i].COLOR = "default";
+  console.log("deleting");
+  line++;
+  for (var i = line*COLS -1; i >= 0; --i) {
+    grid[i+COLS].COLOR = grid[i].COLOR;
+    grid[i+COLS].state = grid[i].state;
+    grid[i].COLOR = -1;
+    grid[i].state = "default";
   }
 }
 
@@ -87,8 +94,8 @@ var pos = function(x, y){
 
 function keyPressed(){
     if(keyCode == LEFT_ARROW)  pesa.moure(-1);
-    if(keyCode == RIGHT_ARROW) pesa.moure(1)
+    if(keyCode == RIGHT_ARROW) pesa.moure(1);
     if(keyCode == UP_ARROW) pesa.rotar();
-    if(keyCode == DOWN_ARROW) delay = 30;
-    else delay = 90;
+    if(keyCode == DOWN_ARROW) delay = 5;
+    else delay = 45;
 }

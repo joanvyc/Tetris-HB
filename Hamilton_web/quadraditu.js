@@ -34,18 +34,18 @@ function quadraditu(x, y) {
   // Pre: true.
   // Post:return whether is default or not.
   this.is_default = function(){
-    return state == "default";
+    return this.state == "default";
   }
 
   // Pre: true.
   // Post:return whether is static or not.
   this.is_static = function(){
-    return state == "static";
+    return this.state == "static";
   }
 
   // Pre: true.
   // Post:return whether is dynamic or not.
   this.is_dynamic = function(){
-    return state == "dynamic";
+    return this.state == "dynamic";
   }
 }
