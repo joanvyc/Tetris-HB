@@ -97,7 +97,7 @@ function piece(){
       }
   }
   this.rotar = function(){
-    if(can_rotate){
+    if(this.can_rotate()){
         ++this.r_state;
         this.update(false);
         for(var i = 0; i<200;++i)grid[i].show();
