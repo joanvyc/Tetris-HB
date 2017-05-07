@@ -4,7 +4,7 @@ function piece(){
   this.r_state = 0;
 
   this.createShape = function(){
-    this.name = floor(random(0,7));
+    this.name =0; //floor(random(0,7));
     switch (this.name){
       case 0:
       // cube
@@ -60,7 +60,7 @@ function piece(){
   for (var w = 0; w < 4; ++w) {
     grid[pos(
       this.r_places[0][w].x,
-      this.r_places[0][w].y,
+      this.r_places[0][w].y
     )].COLOR = this.name;
   }
 
@@ -151,6 +151,9 @@ function piece(){
         sup_pos.y += this.r_places[this.r_state % this.r_places.length][i].y + this.origin.y;
         grid[pos(sup_pos.x,sup_pos.y)].state = "static";
       }
+      checkLines();
+      checkLines();
+      checkLines();
       checkLines();
       this.origin = createVector(0,0);
       this.createShape();
