@@ -56,8 +56,22 @@ function Piece(){
   }
 
   this.x_move = function(DIR)  {
-    var colision = false;
-    var rotated = this.rotated % this.shpapes[this.name].lenght;
+    if (DIR != 0){
+      var colision = false;
+      var rotated = this.rotations % this.shpapes[this.name].lenght;
+      for (var i = 0; i < 4 && !colision; ++i) {
+        var next_pos = createVector(0, 0);
+        next_pos.x = this.name][rotated][i].x + this.origin.x + DIR;
+        next_pos.y = this.name][rotated][i].y + this.origin.y;
+        if (
+          grid[next_pos.x, next_pos.y].is_static() ||
+          next_pos.x >= COLS                       ||
+          next_pos.x <  0
+        )colision = false;
+      }
+      
+      if (!colision) this.origin.x += DIR;
+    }
   }
 
 }

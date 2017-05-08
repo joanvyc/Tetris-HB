@@ -1,5 +1,8 @@
-var frameCounter = 0;
-var delay = 30;
+var frameLastFall = 0;
+var frameLastMove = 0;
+var fallDelay = 30;
+var moveDelay = 5;
+
 var FILES = 20;
 var COLS = 10;
 var SIZE = 30;
@@ -9,9 +12,15 @@ var SIZE = 30;
 var grid = Array(200);
 var pesa;
 
+var direccio = "stoped";
+
 function setup() {
     frameRate(60);
 
+    var canvas;
+    canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
+    canvas.parent('container');
+    background(255, 255, 255);
     var canvas;
     canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
     canvas.parent('container');
@@ -25,6 +34,7 @@ function setup() {
     }
 
     pesa = new piece();
+
 
 /**
     for(var i = 0; i<FILES; ++i){
@@ -43,9 +53,15 @@ function draw() {
 }
 
 var update = function(){
-    if (frameCounter < frameCount) {
+  console.log("Delay: " + fallDelay);
+    if (frameLastFall + fallDelay < frameCount) {
       pesa.update(true);
-      frameCounter = frameCount + delay;
+      frameLastFall = frameCount;
+    }
+    if (frameLastMove + moveDelay < frameCount) {
+      if (direccio == "left")pesa.moure(-1);
+      else if (direccio == "rigth")pesa.moure(1);
+      frameLastMove = frameCount;
     }
 }
 
@@ -93,9 +109,17 @@ var pos = function(x, y){
 }
 
 function keyPressed(){
-    if(keyCode == LEFT_ARROW)  pesa.moure(-1);
-    if(keyCode == RIGHT_ARROW) pesa.moure(1);
-    if(keyCode == UP_ARROW) pesa.rotar();
-    if(keyCode == DOWN_ARROW) delay = 5;
-    else delay = 45;
+  console.log("Key Presed: " + keyCode);
+  switch(keyCode){
+		case LEFT_ARROW: 	direccio = "left";  break;
+		case RIGHT_ARROW:	direccio = "rigth";	break;
+		case UP_ARROW: 		rotar = true;				break;
+		case DOWN_ARROW: 	fallDelay = 5;			break;
+	}
+}
+
+function keyReleased() {
+  console.log("Key Released: " + keyCode);
+  if (keyCode == DOWN_ARROW) fallDelay = 45;
+  if ((keyCode == LEFT_ARROW) || (keyCode == RIGHT_ARROW)) (direccio = "stoped");
 }

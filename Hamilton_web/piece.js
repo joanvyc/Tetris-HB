@@ -4,7 +4,7 @@ function piece(){
   this.r_state = 0;
 
   this.createShape = function(){
-    this.name =0; //floor(random(0,7));
+    this.name = floor(random(0,7));
     switch (this.name){
       case 0:
       // cube
