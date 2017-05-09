@@ -2,7 +2,7 @@ var frameLastFall = 0;
 var frameLastMove = 0;
 
 var fallDelay = 60;
-var moveDelay = 10;
+var moveDelay = 5;
 
 var dirH = "stoped"; // direccio Horitzontal.
 var dirR = "stoped";  // direccio Rotacio.
@@ -98,5 +98,5 @@ function keyPressed() {
 
 function keyReleased() {
   if (keyCode == DOWN_ARROW) fallDelay = 30;
-  else if ((keyCode == LEFT_ARROW) || (keyCode == RIGHT_ARROW)) direccio = "stoped";
+  else if ((keyCode == LEFT_ARROW) || (keyCode == RIGHT_ARROW)) dirH = "stoped";
 }
