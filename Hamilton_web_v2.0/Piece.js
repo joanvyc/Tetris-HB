@@ -64,10 +64,11 @@ function Piece(){
         next_pos.x = this.shapes[this.name][rotated][i].x + this.origin.x + dir;
         next_pos.y = this.shapes[this.name][rotated][i].y + this.origin.y;
         if (
-          grid[next_pos.x, next_pos.y].is_static() ||
-          next_pos.x >= COLS                       ||
-          next_pos.x <  0
-        )colision = false;
+            next_pos.x >= COLS                       ||
+            next_pos.x <  0  ||
+          grid[next_pos.y][next_pos.x].state == "static"
+
+      )colision = true;
       }
       if (!colision)
       {
@@ -104,12 +105,12 @@ function Piece(){
     for(var i = 0; i<4; ++i){
       var clean_pos = createVector(0,0);
       clean_pos.x = this.shapes[this.name][this.rotations % this.shapes[this.name].length][i].x + this.origin.x;
+
       clean_pos.y = this.shapes[this.name][this.rotations % this.shapes[this.name].length][i].y + this.origin.y;
+
       grid[clean_pos.y][clean_pos.x].state = "default";
       grid[clean_pos.y][clean_pos.x].COLOR = -1;
-      console.log("From " + i + " colored: " + grid[clean_pos.x][clean_pos.y].COLOR);
-      console.log(" " + clean_pos.y);
-      console.log(" " + clean_pos.x);
+
     }
   }
 
@@ -117,10 +118,23 @@ function Piece(){
     for(var i = 0; i<4; ++i){
       var next_pos = createVector(0,0);
       next_pos.x = this.shapes[this.name][this.rotations % this.shapes[this.name].length][i].x + this.origin.x;
+
       next_pos.y = this.shapes[this.name][this.rotations % this.shapes[this.name].length][i].y + this.origin.y;
+
       grid[next_pos.y][next_pos.x].state = "dynamic";
       grid[next_pos.y][next_pos.x].COLOR = this.name;
     }
+  }
+
+  this.make_static = function(){
+      for(var i = 0; i<4; ++i){
+          var static_pos = createVector(0,0);
+          static_pos.x = this.shapes[this.name][this.rotations % this.shapes[this.name].length][i].x + this.origin.x;
+
+          static_pos.y = this.shapes[this.name][this.rotations % this.shapes[this.name].length][i].y + this.origin.y;
+
+          grid[static_pos.y][static_pos.x].state = "static";
+      }
   }
 
   this.pos_box = function(i) {

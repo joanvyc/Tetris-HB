@@ -2,7 +2,7 @@ var frameLastFall = 0;
 var frameLastMove = 0;
 
 var fallDelay = 60;
-var moveDelay = 5;
+var moveDelay = 10;
 
 var dirH = "stoped"; // direccio Horitzontal.
 var dirR = "stoped";  // direccio Rotacio.
@@ -16,7 +16,7 @@ var update = function() {
     frameLastFall = frameCount;
   }
   if (frameLastMove + moveDelay < frameCount) {
-		var dir = dirH == "left" ? -1 : (dirH == "right" ?  1 : 0);
+	var dir = dirH == "left" ? -1 : (dirH == "right" ?  1 : 0);
     pesa.x_move(dir);
     frameLastMove = frameCount;
   }
@@ -34,20 +34,19 @@ var update = function() {
 
 var fall = function(type){
 	if (type == "dynamics"){
-		var next_pesa = pesa;
-		next_pesa.origin.y = pesa.origin.y + 1;
 		var can_fall = true;
 		for (var i = 0; i < 4 && can_fall; ++i) {
-			if (next_pesa.pos_box(i).y >= FILES || next_pesa.box(i).state == "static") can_fall = false;
+			if (pesa.pos_box(i).y +1 >= FILES || grid[pesa.pos_box(i).y+1][pesa.pos_box(i).x].state == "static") can_fall = false;
 		}
 		if (can_fall) {
 			pesa.clean();
 			pesa.origin.y++;
-		}
-		else {
+			pesa.draw();
+		}else{
 			pesa.make_static();
 			pesa.createShape();
 		}
+
 	}
 	else if (type == "statics") {
 
@@ -90,8 +89,8 @@ var checkLines = function() {
 
 function keyPressed() {
 	switch(keyCode){
-		case LEFT_ARROW: 	direccio = "left";  break;
-		case RIGHT_ARROW:	direccio = "right";	break;
+		case LEFT_ARROW: 	dirH = "left";  break;
+		case RIGHT_ARROW:	dirH = "right";	break;
 		case UP_ARROW: 		dirR = inverse_rotation ? "left" : "right";	break;
 		case DOWN_ARROW: 	fallDelay = 5;			break;
 	}
