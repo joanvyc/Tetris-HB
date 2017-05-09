@@ -4,7 +4,7 @@ function piece(){
   this.r_state = 0;
 
   this.createShape = function(){
-    this.name =0; //floor(random(0,7));
+    this.name = floor(random(0,7));
     switch (this.name){
       case 0:
       // cube
@@ -98,6 +98,13 @@ function piece(){
   }
   this.rotar = function(){
     if(this.can_rotate()){
+      for(var i = 0; i<4; ++i){
+        var sup_pos = createVector(0,0);
+        sup_pos.x += this.r_places[this.r_state % this.r_places.length][i].x + this.origin.x;
+        sup_pos.y += this.r_places[this.r_state % this.r_places.length][i].y + this.origin.y;
+        grid[pos(sup_pos.x,sup_pos.y)].state = "default";
+        grid[pos(sup_pos.x,sup_pos.y)].COLOR = -1;
+      }
         ++this.r_state;
         this.update(false);
         for(var i = 0; i<200;++i)grid[i].show();
@@ -106,13 +113,26 @@ function piece(){
 
   //mira si pot rotar osigui que la posicio seguent del rotate no toca amb statics
   this.can_rotate = function(){
-
     for(var i = 0; i<4; ++i){
-      if(grid[pos((this.r_places[(this.r_state+1)%this.r_places.length][i] + this.origin).x,(this.r_places[(this.r_state+1)%this.r_places.length][i] + this.origin).y)].is_static()) return false;
+      var vect = p5.Vector.add(this.origin,this.r_places[(this.r_state+1)%this.r_places.length][i]);
+      if((vect.x<0 || vect.y<0) ||  grid[pos(vect.x,vect.y)].is_static()) return false;
+      vect.add(0,1);
+      if((vect.x<0 || vect.y<0) || grid[pos(vect.x,vect.y)].is_static()) return false;
+      vect.add(1,-1);
+      if((vect.x<0 || vect.y<0) ||  grid[pos(vect.x,vect.y)].is_static()) return false;
+      vect.add(-2,0);
+      if((vect.x<0 || vect.y<0) ||  grid[pos(vect.x,vect.y)].is_static()) return false;
+      /*var vect2 = p5.Vector.add(this.origin,this.r_places[(this.r_state+1)%(this.r_places.length+1)][i]);
+      if((vect2.x<0 || vect2.y<0) ||  grid[pos(vect2.x,vect2.y)].is_static()) return false;
+      vect2.add(0,1);
+      if((vect2.x<0 || vect2.y<0) ||  grid[pos(vect2.x,vect2.y)].is_static()) return false;
+      vect.add(1,-1);
+      if((vect2.x<0 || vect2.y<0) ||  grid[pos(vect2.x,vect2.y)].is_static()) return false;
+      vect2.add(-2,0);
+      if((vect2.x<0 || vect2.y<0) ||  grid[pos(vect2.x,vect2.y)].is_static()) return false;*/
     }
     return true;
 }
-
   this.update = function(baixar){
     // ha de detectar si esta en contacte amb un cub estatic si ho està cridar a reiniciar
     // si no està en contacte amb un cub estatic eliminar aquests cubs ja escrits i escriure en ++origen.y

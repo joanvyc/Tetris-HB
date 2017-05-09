@@ -13,9 +13,13 @@ function setup() {
     frameRate(60);
 
     var canvas;
-    canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
+    //canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
+    canvas = createCanvas(windowWidth, windowHeight, WEBGL);
     canvas.parent('container');
     background(255, 255, 255);
+    var fov = 60 / 180 * PI;
+  var cameraZ = (height/2.0) / tan(fov/2.0);
+    perspective(60 / 180 * PI, width/height, cameraZ * 0.1, cameraZ * 10);
     for (var j = 0; j < FILES; ++j){
       for (var i = 0; i < COLS; ++i){
         var position = pos(i, j);
@@ -38,6 +42,13 @@ function setup() {
 }
 
 function draw() {
+
+    var dirX = (mouseX / width - 0.5) *2;
+    var dirY = (mouseY / height - 0.5) *(-2);
+    directionalLight(250, 250, 250, dirX, dirY, 0.25);
+    camera(120, 335, sin(frameCount * 0.01) * 100);
+    console.log(mouseX + " "+mouseY);
+    ambientLight(150);
     update();
     addFrame();
 }
@@ -93,9 +104,9 @@ var pos = function(x, y){
 }
 
 function keyPressed(){
+    if(keyCode == UP_ARROW) pesa.rotar();
     if(keyCode == LEFT_ARROW)  pesa.moure(-1);
     if(keyCode == RIGHT_ARROW) pesa.moure(1);
-    if(keyCode == UP_ARROW) pesa.rotar();
     if(keyCode == DOWN_ARROW) delay = 5;
     else delay = 45;
 }

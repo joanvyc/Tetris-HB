@@ -3,7 +3,7 @@ var delay = 30;
 var FILES = 20;
 var COLS = 10;
 var SIZE = 30;
-
+var DIST = 0;
 //var pesa;
 
 var grid = Array(200);
