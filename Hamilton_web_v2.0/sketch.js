@@ -10,7 +10,7 @@ var grid = Array(20);
 var pesa;
 
 function setup() {
-    frameRate(60);
+    
 
     var canvas = createCanvas(COLS*SIZE+1, FILES*SIZE);
     canvas.parent('container');

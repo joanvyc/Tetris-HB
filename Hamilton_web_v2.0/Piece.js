@@ -82,7 +82,7 @@ function Piece(){
   this.rotar = function(dir) {
     if(dir != 0 && this.can_rotate(dir)){
         this.clean();
-        this.rotations += dir == "right" ? 1 : (dir == "left" ? -1 : 0);
+        this.rotations += dir;
         this.draw();
     }
   }
@@ -91,12 +91,16 @@ function Piece(){
     for (var i = 0; i < 4; ++i) {
       var next_pos = createVector(0, 0);
       next_pos.x = this.shapes[this.name][(this.rotations + (dir)) % this.shapes[this.name].length][i].x + this.origin.x;
+
       next_pos.y = this.shapes[this.name][(this.rotations + (dir)) % this.shapes[this.name].length][i].y + this.origin.y;
+
       if (
-        grid[next_pos.y][next_pos.x].state == "static"||
-        next_pos.y > FILES                      ||
+        next_pos.y >= FILES                     ||
+        //next_pos.y > 0                          ||
         next_pos.x >= COLS                      ||
-        next_pos.x < 0
+        next_pos.x < 0                          ||
+        grid[next_pos.y][next_pos.x].state == "static"
+
       ) return false;
     }return true;
   }

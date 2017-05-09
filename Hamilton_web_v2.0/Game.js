@@ -1,12 +1,12 @@
 var frameLastFall = 0;
 var frameLastMove = 0;
 
-var fallDelay = 60;
+var fallDelay = 30;
 var moveDelay = 5;
 
 var dirH = "stoped"; // direccio Horitzontal.
 var dirR = "stoped";  // direccio Rotacio.
-var inverse_rotation;
+var inverse_rotation = false;
 
 var update = function() {
 
@@ -21,6 +21,7 @@ var update = function() {
     frameLastMove = frameCount;
   }
 	var dir = dirR == "left" ? -1 : (dirR == "right" ?  1 : 0);
+
 	pesa.rotar(dir);
 	dirR = "stoped";
 
@@ -45,43 +46,52 @@ var fall = function(type){
 		}else{
 			pesa.make_static();
 			pesa.createShape();
+			checkLines();
+			fallDelay = 30;
 		}
 
 	}
-	else if (type == "statics") {
+	else{
+		for(var i = type; i>0; --i){
+			for(var j = 0; j<COLS; ++j){
+				grid[i][j].COLOR = grid[i-1][j].COLOR;
+				grid[i][j].state = grid[i-1][j].state;
 
+			}
+			delete_line(i-1);
+		}
 
 	}
 }
 
+var state_of_line =  function(i) {
+	this.empty = true;
+	this.full = true;
+
+	for (var j = 0; j < COLS && (this.empty || this.full); ++j) {
+		if (grid[i][j].state == "default") {
+			this.full = false;
+		}
+		else{
+			this.empty = false;
+		}
+	}
+}
+
+var delete_line = function(i) {
+	for (var j = 0; j < COLS; ++j) {
+		grid[i][j].COLOR = -1;
+		grid[i][j].state = "default";
+	}
+}
+
 var checkLines = function() {
-	var state_of_line = function(i) {
-		this.empty = true;
-		this.full = true;
-
-		for (var j = 0; j < COLS && (this.empty || this.full); ++j) {
-			if (grid[i][j].state == "default") {
-				this.full = false;
-			}
-			else{
-				this.empty = false;
-			}
-		}
-	}
-
-	var delete_line = function(i) {
-		for (var j = 0; j < COLS; ++j) {
-			grid[i][j].COLOR = -1;
-			grid[i][j].state = "default";
-		}
-	}
-
 	var i = FILES-1;
 	do{
-		var state = state_of_line(i);
+		var state = new state_of_line(i);
 		if (state.full) {
 			delete_line(i);
-			fall("statics");
+			fall(i);
 		}
 		else --i;
 	} while(i >= 0 && !state.empty);
@@ -93,6 +103,7 @@ function keyPressed() {
 		case RIGHT_ARROW:	dirH = "right";	break;
 		case UP_ARROW: 		dirR = inverse_rotation ? "left" : "right";	break;
 		case DOWN_ARROW: 	fallDelay = 5;			break;
+		case 32: fallDelay = 0; break;
 	}
 }
 
