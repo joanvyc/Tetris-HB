@@ -1,18 +1,18 @@
 var frameLastFall = 0;
 var frameLastMove = 0;
 
-var dealyFall;
-var delayMove;
+var fallDelay = 60;
+var moveDelay = 5;
 
 var dirH = "stoped"; // direccio Horitzontal.
-var dirR = "right";  // direccio Rotacio.
-var rotar = false;
+var dirR = "stoped";  // direccio Rotacio.
+var inverse_rotation;
 
 var update = function() {
 
 	// En funcio de l'input actua.
 	if (frameLastFall + fallDelay < frameCount) {
-    fall("dynamic");
+    fall("dynamics");
     frameLastFall = frameCount;
   }
   if (frameLastMove + moveDelay < frameCount) {
@@ -20,14 +20,16 @@ var update = function() {
     pesa.x_move(dir);
     frameLastMove = frameCount;
   }
-	if (rotar && pesa.pot_rotar()) {
-		pesa.rotar();
-		rotar = false;
-	}
+	var dir = dirR == "left" ? -1 : (dirR == "right" ?  1 : 0);
+	pesa.rotar(dir);
+	dirR = "stoped";
 
 	// nou frame.
-	var mida = COLS * FILES;
-	for (var i = 0; i < mida; ++i) grid[i].show();
+	for (var i = 0; i < FILES; ++i){
+		for (var j = 0; j < COLS; ++j) {
+			grid[i][j].show();
+		}
+	}
 }
 
 var fall = function(type){
@@ -36,9 +38,12 @@ var fall = function(type){
 		next_pesa.origin.y = pesa.origin.y + 1;
 		var can_fall = true;
 		for (var i = 0; i < 4 && can_fall; ++i) {
-			if (next_pesa.pos_box(i).y >= COLS || next_pesa.box(i).state == "static") can_fall = false;
+			if (next_pesa.pos_box(i).y >= FILES || next_pesa.box(i).state == "static") can_fall = false;
 		}
-		if (can_fall) pesa = next_pesa;
+		if (can_fall) {
+			pesa.clean();
+			pesa.origin.y++;
+		}
 		else {
 			pesa.make_static();
 			pesa.createShape();
@@ -86,13 +91,13 @@ var checkLines = function() {
 function keyPressed() {
 	switch(keyCode){
 		case LEFT_ARROW: 	direccio = "left";  break;
-		case RIGHT_ARROW:	direccio = "rigth";	break;
-		case UP_ARROW: 		rotar = true;				break;
+		case RIGHT_ARROW:	direccio = "right";	break;
+		case UP_ARROW: 		dirR = inverse_rotation ? "left" : "right";	break;
 		case DOWN_ARROW: 	fallDelay = 5;			break;
 	}
 }
 
 function keyReleased() {
-  if (keyCode == DOWN_ARROW) fallDelay = 45;
+  if (keyCode == DOWN_ARROW) fallDelay = 30;
   else if ((keyCode == LEFT_ARROW) || (keyCode == RIGHT_ARROW)) direccio = "stoped";
 }

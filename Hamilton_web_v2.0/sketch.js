@@ -19,14 +19,15 @@ function setup() {
       grid[j] = new Array(10);
       for (var i = 0; i < COLS; ++i){
         grid[j][i] = new Box(i*SIZE, j*SIZE);
+        grid[j][i].COLOR = 1;
         grid[j][i].show();
       }
     }
 
-    pesa = new piece();
-
+    pesa = new Piece();
+    for (var i = 0; i < 61; ++i)update();
 }
 
 function draw() {
-    update();
+
 }
