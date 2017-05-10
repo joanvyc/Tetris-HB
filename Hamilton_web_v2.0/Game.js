@@ -1,4 +1,7 @@
 var update = function( p ) {
+	document.getElementById("Score").innerHTML = score;
+
+	if (score != 0 && score % 5000 == 0) fallDelay--;
 
 	// En funcio de l'input actua.
 	if (frameLastFall + fallDelay < p.frameCount) {
@@ -38,6 +41,7 @@ var fall = function(type){
 			pesa.clean();
 			pesa.origin.y++;
 			pesa.draw();
+			if (fallDelay == 5 || fallDelay == 0) score += 1;
 		}else{
 			pesa.make_static();
 			pesa.createShape();
@@ -86,6 +90,7 @@ var checkLines = function() {
 	do{
 		var state = new state_of_line(i);
 		if (state.full) {
+			score += 500;
 			delete_line(i);
 			fall(i);
 		}
