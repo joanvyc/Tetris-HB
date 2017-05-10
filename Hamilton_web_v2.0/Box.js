@@ -1,4 +1,4 @@
-function Box(x, y){
+function Box(x, y, p){
   // The possition where de box is displayed.
   this.x = x;
   this.y = y;
@@ -13,17 +13,17 @@ function Box(x, y){
 
   this.show = function() {
     switch(this.COLOR) {
-      case -1: fill(55, 55, 55);break;
-      case 0:  fill(109, 249, 244);break;
-      case 1:  fill(242, 255, 0);  break;
-      case 2:  fill(166, 0, 255);  break;
-      case 3:  fill(0, 255, 19);   break;
-      case 4:  fill(255,0,0);      break;
-      case 5:  fill(0,0,255);      break;
-      case 6:  fill(255, 153, 0);  break;
+      case -1: p.fill(55, 55, 55);break;
+      case 0:  p.fill(109, 249, 244);break;
+      case 1:  p.fill(242, 255, 0);  break;
+      case 2:  p.fill(166, 0, 255);  break;
+      case 3:  p.fill(0, 255, 19);   break;
+      case 4:  p.fill(255,0,0);      break;
+      case 5:  p.fill(0,0,255);      break;
+      case 6:  p.fill(255, 153, 0);  break;
       default: break;
     }
-    stroke(30,30,30);
-    rect(this.x, this.y, SIZE, SIZE);
+    p.stroke(30,30,30);
+    p.rect(this.x, this.y, SIZE, SIZE);
   }
 }
