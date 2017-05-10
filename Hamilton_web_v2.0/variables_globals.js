@@ -14,6 +14,7 @@ var holded;
 var frameLastFall = 0;
 var frameLastMove = 0;
 
+var defFallDelay = 20;
 var fallDelay = 20;
 var moveDelay = 5;
 

@@ -1,4 +1,4 @@
-function Piece(){
+function Piece(p){
   this.shapes = Array(7);
 
   // Cube
@@ -43,7 +43,7 @@ function Piece(){
 
   this.createShape = function() {
     this.rotations = 0;
-    this.name = Math.floor(Math.random()*7);
+    this.name = Math.floor(Math.random()*7000000)%7;
     this.origin = new createVector(3, -2);
   }
 

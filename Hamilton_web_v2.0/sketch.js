@@ -47,7 +47,7 @@ function keyPressed() {
 
 function keyReleased() {
   switch(game.keyCode){
-    case game.DOWN_ARROW:  fallDelay = 30;   break;
+    case game.DOWN_ARROW:  fallDelay = defFallDelay - 3*level;   break;
     case game.LEFT_ARROW:  dirH = "stoped";  break;
     case game.RIGHT_ARROW: dirH = "stoped";  break;
     default:                                 break;

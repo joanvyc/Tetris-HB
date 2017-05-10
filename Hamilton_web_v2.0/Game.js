@@ -1,9 +1,12 @@
 var update = function( p ) {
+	var lastLevel = level;
+	level = Math.floor(score/5000);
+	if (lastLevel > level) fallDelay = defFallDelay - 3*level;
+
+
 	document.getElementById("Score").innerHTML = score;
 	document.getElementById("Level").innerHTML = level;
 	document.getElementById("Lines").innerHTML = lines;
-
-	if (fallDelay > 10 && score != 0 && score % 5000 == 0) {fallDelay -= 3; level++;}
 
 	// En funcio de l'input actua.
 	if (frameLastFall + fallDelay < p.frameCount) {
@@ -49,7 +52,7 @@ var fall = function(type){
 			pesa.createShape();
 			checkLines();
 			is_holded = false;
-			fallDelay = 20;
+			fallDelay = defFallDelay - 3*level;
 		}
 
 	}
