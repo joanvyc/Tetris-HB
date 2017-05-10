@@ -1,6 +1,4 @@
 var holder_layout = function( p ) {
-  this.holded;
-
   p.setup = function(){
     p.createCanvas(G_SIZE*SIZE+1, G_SIZE*SIZE);
     for (var j = 0; j < G_SIZE; ++j){
@@ -14,47 +12,45 @@ var holder_layout = function( p ) {
   };
 
   p.draw = function() {
-
-
+    draw_hold();
   };
+};
 
-  this.hold = function( pesa ) {
-    if (this.holded = null) {
-      clean();
-      aux = this.holded;
-      this.holded = pesa;
-      this.holded.origin = new createVector(0, 0);
-      draw();
-      return aux;
-    }else {
-      this.holded = pesa;
-      this.holded.origin = new createVector(0, 0);
-      return new Piece();
-    }
+var hold = function( pesa ) {
+  if (holded != null) {
+    this.clean();
+    aux = holded;
+    holded = pesa;
+    holded.origin = new createVector(n_b, 1);
+    return aux;
+  }else {
+    holded = pesa;
+    var n_b = holded.name == 5 ? 1 : 0;
+    holded.origin = new createVector(n_b, 1);
+    return new Piece();
   }
+}
 
-  var clean = function() {
-    for (var i = 0; i < G_SIZE; ++i) {
-      var pos = new createVector(0, 0);
-      pos.x = this.shape[holded.name][0][i].x
-      pos.y = this.shape[holded.name][0][i].y
+var clean = function() {
+  for (var i = 0; i < G_SIZE; ++i) {
+    var pos = new createVector(0, 0);
+    pos.x = holded.shapes[holded.name][0][i].x
+    pos.y = holded.shapes[holded.name][0][i].y
 
-      holder_grid[pos.y][pos.x].COLOR = -1;
-      holder_grid[pos.y][pos.x].show();
-    }
+    holder_grid[pos.y][pos.x].COLOR = -1;
+    holder_grid[pos.y][pos.x].show();
   }
+}
 
-  var draw = function() {
+var draw_hold = function() {
+  if (holded != null) {
     for (var i = 0; i < 4; ++i) {
-      var pos = new createVector(0, 0);
-      pos.x = this.shape[holded.name][0][i].x
-      pos.y = this.shape[holded.name][0][i].y
+      var pos = new createVector(-3, -1);
+      pos.x = holded.shapes[holded.name][0][i].x;
+      pos.y = holded.shapes[holded.name][0][i].y;
 
       holder_grid[pos.y][pos.x].COLOR = holded.name;
       holder_grid[pos.y][pos.x].show();
     }
   }
-
-};
-
-var holder = new p5(holder_layout, 'holded-matrix');
+}

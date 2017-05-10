@@ -20,31 +20,35 @@ var game_layout = function( p ) {
   };
 
 };
-var game = new p5(game_layout, 'tetris_matrix');
 
-var keyPressed = function() {
-  switch(keyCode){
-    case LEFT_ARROW: 	dirH = "left";                              break;
-    case RIGHT_ARROW:	dirH = "right";	                            break;
-    case UP_ARROW: 		dirR = inverse_rotation ? "left" : "right";	break;
-    case DOWN_ARROW: 	fallDelay = 5;			                        break;
+function keyPressed() {
+  switch(game.keyCode){
+    case game.LEFT_ARROW: 	dirH = "left";                              break;
+    case game.RIGHT_ARROW:	dirH = "right";	                            break;
+    case game.UP_ARROW: 		dirR = inverse_rotation ? "left" : "right";	break;
+    case game.DOWN_ARROW: 	fallDelay = 5;			                        break;
     case 67: {
-      pesa.make_static();
-      pesa.clean();
-      pesa = hold(pesa);
-      pesa.origin.x = 0;
-      pesa.origin.y = -1;
-      pesa.draw();
+      if (!is_holded){
+        pesa.make_static();
+        pesa.clean();
+        pesa = hold(pesa);
+        pesa.origin.x = 3;
+        pesa.origin.y = -2;
+        pesa.draw();
+        is_holded = true;
+      }
       break;
     }
-    case 32: fallDelay = 0;                                         break;
+    case 32: fallDelay = 0;                                             break;
+    default:                                                            break;
   }
 }
 
-var keyReleased = function() {
-  switch(keyCode){
-    case DOWN_ARROW:  fallDelay = 30;   break;
-    case LEFT_ARROW:  dirH = "stoped";  break;
-    case RIGHT_ARROW: dirH = "stoped";  break;
+function keyReleased() {
+  switch(game.keyCode){
+    case game.DOWN_ARROW:  fallDelay = 30;   break;
+    case game.LEFT_ARROW:  dirH = "stoped";  break;
+    case game.RIGHT_ARROW: dirH = "stoped";  break;
+    default:                                 break;
   }
 };

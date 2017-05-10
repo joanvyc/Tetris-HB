@@ -3,48 +3,48 @@ function Piece(){
 
   // Cube
   this.shapes[0] = Array(1);
-  this.shapes[0][0] = [new createVector(4,1),new createVector(5,1),new createVector(4,2),new createVector(5,2)];
+  this.shapes[0][0] = [new createVector(1,1),new createVector(2,1),new createVector(1,2),new createVector(2,2)];
 
   // Z
   this.shapes[1] = Array(2);
-  this.shapes[1][0] = [new createVector(3,1),new createVector(4,1),new createVector(4,2),new createVector(5,2)];
-  this.shapes[1][1] = [new createVector(5,0),new createVector(4,1),new createVector(5,1),new createVector(4,2)];
+  this.shapes[1][0] = [new createVector(0,1),new createVector(1,1),new createVector(1,2),new createVector(2,2)];
+  this.shapes[1][1] = [new createVector(2,0),new createVector(1,1),new createVector(2,1),new createVector(1,2)];
 
   // S
   this.shapes[2] = Array(2);
-  this.shapes[2][0] = [new createVector(4,1),new createVector(5,1),new createVector(3,2),new createVector(4,2)];
-  this.shapes[2][1] = [new createVector(4,0),new createVector(4,1),new createVector(5,1),new createVector(5,2)];
+  this.shapes[2][0] = [new createVector(1,1),new createVector(2,1),new createVector(0,2),new createVector(1,2)];
+  this.shapes[2][1] = [new createVector(1,0),new createVector(1,1),new createVector(2,1),new createVector(2,2)];
 
   // L
   this.shapes[3] = Array(4);
-  this.shapes[3][0] = [new createVector(3,1),new createVector(4,1),new createVector(5,1),new createVector(5,0)];
-  this.shapes[3][1] = [new createVector(4,0),new createVector(4,1),new createVector(4,2),new createVector(5,2)];
-  this.shapes[3][2] = [new createVector(3,1),new createVector(4,1),new createVector(5,1),new createVector(3,2)];
-  this.shapes[3][3] = [new createVector(3,0),new createVector(4,0),new createVector(4,1),new createVector(4,2)];
+  this.shapes[3][0] = [new createVector(0,1),new createVector(1,1),new createVector(2,1),new createVector(2,0)];
+  this.shapes[3][1] = [new createVector(1,0),new createVector(1,1),new createVector(1,2),new createVector(2,2)];
+  this.shapes[3][2] = [new createVector(0,1),new createVector(1,1),new createVector(2,1),new createVector(0,2)];
+  this.shapes[3][3] = [new createVector(0,0),new createVector(1,0),new createVector(1,1),new createVector(1,2)];
 
   // *L
   this.shapes[4] = Array(4);
-  this.shapes[4][0] = [new createVector(3,0),new createVector(3,1),new createVector(4,1),new createVector(5,1)];
-  this.shapes[4][1] = [new createVector(4,0),new createVector(5,0),new createVector(4,1),new createVector(4,2)];
-  this.shapes[4][2] = [new createVector(3,1),new createVector(4,1),new createVector(5,1),new createVector(5,2)];
-  this.shapes[4][3] = [new createVector(3,2),new createVector(4,2),new createVector(4,1),new createVector(4,0)];
+  this.shapes[4][0] = [new createVector(0,0),new createVector(0,1),new createVector(1,1),new createVector(2,1)];
+  this.shapes[4][1] = [new createVector(1,0),new createVector(2,0),new createVector(1,1),new createVector(1,2)];
+  this.shapes[4][2] = [new createVector(0,1),new createVector(1,1),new createVector(2,1),new createVector(2,2)];
+  this.shapes[4][3] = [new createVector(0,2),new createVector(1,2),new createVector(1,1),new createVector(1,0)];
 
   // |
   this.shapes[5] = Array(2);
-  this.shapes[5][0] = [new createVector(3,2),new createVector(4,2),new createVector(5,2),new createVector(6,2)];
-  this.shapes[5][1] = [new createVector(5,0),new createVector(5,1),new createVector(5,2),new createVector(5,3)];
+  this.shapes[5][0] = [new createVector(0,2),new createVector(1,2),new createVector(2,2),new createVector(3,2)];
+  this.shapes[5][1] = [new createVector(2,0),new createVector(2,1),new createVector(2,2),new createVector(2,3)];
 
   // T ^-1
   this.shapes[6] = Array(4);
-  this.shapes[6][0] = [new createVector(3,1),new createVector(4,0),new createVector(4,1),new createVector(5,1)];
-  this.shapes[6][1] = [new createVector(4,2),new createVector(4,0),new createVector(4,1),new createVector(5,1)];
-  this.shapes[6][2] = [new createVector(3,1),new createVector(4,2),new createVector(4,1),new createVector(5,1)];
-  this.shapes[6][3] = [new createVector(3,1),new createVector(4,0),new createVector(4,1),new createVector(4,2)];
+  this.shapes[6][0] = [new createVector(0,1),new createVector(1,1),new createVector(1,0),new createVector(2,1)];
+  this.shapes[6][1] = [new createVector(1,0),new createVector(1,1),new createVector(2,1),new createVector(1,2)];
+  this.shapes[6][2] = [new createVector(2,1),new createVector(1,1),new createVector(1,2),new createVector(0,1)];
+  this.shapes[6][3] = [new createVector(1,2),new createVector(1,1),new createVector(0,1),new createVector(1,0)];
 
   this.createShape = function() {
     this.rotations = 0;
     this.name = Math.floor(Math.random()*7);
-    this.origin = new createVector(0, -2);
+    this.origin = new createVector(3, -2);
   }
 
   this.x_move = function(dir)  {

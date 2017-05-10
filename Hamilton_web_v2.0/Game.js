@@ -42,7 +42,8 @@ var fall = function(type){
 			pesa.make_static();
 			pesa.createShape();
 			checkLines();
-			fallDelay = 30;
+			is_holded = false;
+			fallDelay = 20;
 		}
 
 	}
