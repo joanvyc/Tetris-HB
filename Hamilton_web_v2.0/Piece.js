@@ -81,11 +81,13 @@ function Piece(){
     if(dir != 0 && this.can_rotate(dir)){
         this.clean();
         this.rotations += dir;
+        if (this.rotations < 0) this.rotations += this.shapes[this.name].length;
         this.draw();
     }
   }
 
   this.can_rotate = function(dir) {
+    if (dir < 0) dir += this.shapes[this.name].length;
     for (var i = 0; i < 4; ++i) {
       var next_pos = new createVector(0, 0);
       next_pos.x = this.shapes[this.name][(this.rotations + (dir)) % this.shapes[this.name].length][i].x + this.origin.x;

@@ -1,7 +1,9 @@
 var update = function( p ) {
 	document.getElementById("Score").innerHTML = score;
+	document.getElementById("Level").innerHTML = level;
+	document.getElementById("Lines").innerHTML = lines;
 
-	if (fallDelay > 10 && score != 0 && score % 5000 == 0) fallDelay--;
+	if (fallDelay > 10 && score != 0 && score % 5000 == 0) {fallDelay -= 3; level++;}
 
 	// En funcio de l'input actua.
 	if (frameLastFall + fallDelay < p.frameCount) {
@@ -90,6 +92,7 @@ var checkLines = function() {
 	do{
 		var state = new state_of_line(i);
 		if (state.full) {
+			lines++;
 			score += 500;
 			delete_line(i);
 			fall(i);

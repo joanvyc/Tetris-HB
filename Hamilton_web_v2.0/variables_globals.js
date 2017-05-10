@@ -24,6 +24,8 @@ var inverse_rotation = false;
 var is_holded;
 
 var score = 0;
+var level = 1;
+var lines = 0;
 
 // Classes auxiliars
 class createVector {
