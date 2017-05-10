@@ -1,6 +1,6 @@
 var update = function( p ) {
 	var lastLevel = level;
-	level = Math.floor(score/5000);
+	level = 1 + Math.floor(score/5000);
 	if (lastLevel > level) fallDelay = defFallDelay - 3*level;
 
 
