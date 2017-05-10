@@ -1,7 +1,7 @@
 var update = function( p ) {
 	document.getElementById("Score").innerHTML = score;
 
-	if (score != 0 && score % 5000 == 0) fallDelay--;
+	if (fallDelay > 10 && score != 0 && score % 5000 == 0) fallDelay--;
 
 	// En funcio de l'input actua.
 	if (frameLastFall + fallDelay < p.frameCount) {
