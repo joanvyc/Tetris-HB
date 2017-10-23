@@ -16,7 +16,7 @@ var frameLastMove = 0;
 
 var defFallDelay = 20;
 var fallDelay = 20;
-var moveDelay = 5;
+var moveDelay = 1;
 
 var dirH = "stoped"; // direccio Horitzontal.
 var dirR = "stoped";  // direccio Rotacio.

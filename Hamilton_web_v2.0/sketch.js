@@ -23,11 +23,11 @@ var game_layout = function( p ) {
 
 function keyPressed() {
   switch(game.keyCode){
-    case game.LEFT_ARROW: 	dirH = "left";                              break;
-    case game.RIGHT_ARROW:	dirH = "right";	                            break;
-    case game.UP_ARROW: 		dirR = "right";                           	break;
-    case 16: dirR = "left";                                             break;
-    case game.DOWN_ARROW: 	fallDelay = 5;			                        break;
+    case game.LEFT_ARROW: 	dirH = "left";                  break;
+    case game.RIGHT_ARROW:	dirH = "right";	                break;
+    case game.UP_ARROW:		dirR = "right";                 break;
+    case 16: 			dirR = "left";			break;
+    case game.DOWN_ARROW: 	fallDelay = 5;			break;
     case 67: {
       if (!is_holded){
         pesa.make_static();
